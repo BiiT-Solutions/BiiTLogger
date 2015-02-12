@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" verbose="1" name="bpmonitoring-crawler">
+	<test name="persistence-manager" enabled="true" preserve-order="true">
+		<groups>
+			<run>
+				<include name="inheritance" />
+				<exclude name="sendEmail" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.biit.logger.InheritanceTest" />
+			<class name="com.biit.logger.SendEmailTest" />
+		</classes>
+	</test>
+</suite>

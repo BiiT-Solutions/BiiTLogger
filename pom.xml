@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.biit</groupId>
+	<artifactId>biit-logger</artifactId>
+	<packaging>jar</packaging>
+	<version>0.0.1</version>
+	<name>BiiT Logger</name>
+	<description>Basic Logging Methods for BiiT projects</description>
+
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>biit-releases</name>
+			<url>https://dev.biit-solutions.com:8443/mavenartifactory/ext-release-local</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+		<maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
+		<maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+		<maven-surefire.version>2.17</maven-surefire.version>
+		<org.testng.version>6.8.7</org.testng.version>
+		<log4j.version>1.2.17</log4j.version>
+		<javax.mail.version>1.4.7</javax.mail.version>
+		<biit-common.version>0.1.0</biit-common.version>
+	</properties>
+
+	<dependencies>
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- MAIL -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${javax.mail.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.biit</groupId>
+			<artifactId>common-utils</artifactId>
+			<version>${biit-common.version}</version>
+		</dependency>
+		<!-- Testing -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${org.testng.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>7</source>
+					<target>7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire.version}</version>
+				<configuration>
+					<useFile>false</useFile>
+					<trimStackTrace>false</trimStackTrace>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/config/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
