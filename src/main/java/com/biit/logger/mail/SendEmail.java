@@ -1,6 +1,5 @@
 package com.biit.logger.mail;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -9,6 +8,7 @@ import javax.mail.internet.InternetAddress;
 
 import com.biit.logger.BiitLogger;
 import com.biit.logger.configuration.EmailConfigurationReader;
+import com.biit.logger.mail.SendEmailThread.ThreadExceptionListener;
 import com.biit.logger.mail.exceptions.EmailNotSentException;
 import com.biit.logger.mail.exceptions.InvalidEmailAddressException;
 
@@ -45,17 +45,37 @@ public class SendEmail {
 	public static void sendEmail(String smtpServer, String emailUser, String emailPassword, String emailSender,
 			String mailTo, String subject, String htmlContent) throws EmailNotSentException,
 			InvalidEmailAddressException {
-		List<String> to = Arrays.asList(new String[] { mailTo });
-		Postman postman = new Postman(smtpServer, emailUser, emailPassword);
+		if (!isValidEmailAddress(emailSender)) {
+			throw new InvalidEmailAddressException("Address email '" + emailSender + "' is invalid");
+		}
+
 		try {
-			if (!isValidEmailAddress(emailSender)) {
-				throw new InvalidEmailAddressException("Address email '" + emailSender + "' is invalid");
-			}
-			postman.setSubject(subject);
-			postman.addHtml(htmlContent);
-			postman.sendMail(to, null, null, emailSender);
-		} catch (MessagingException e) {
-			throw new EmailNotSentException(e.getMessage());
+			SendEmailThread sendEmailThread = new SendEmailThread();
+			sendEmailThread.addExceptionListener(new ThreadExceptionListener() {
+
+				@Override
+				public void exceptionLaunched(MessagingException e) {
+					BiitLogger.severe(SendEmail.class.getName(), BiitLogger.getStackTrace(e));
+					// Catch exception, convert to Runtime to take out from the thread and catch and convert again to
+					// exception.
+					throw new RuntimeException(e);
+				}
+			});
+
+			sendEmailThread.setSmtpServer(smtpServer);
+			sendEmailThread.setEmailUser(emailUser);
+			sendEmailThread.setEmailPassword(emailPassword);
+			sendEmailThread.setEmailSender(emailSender);
+			sendEmailThread.setMailTo(mailTo);
+			sendEmailThread.setSubject(subject);
+			sendEmailThread.setHtmlContent(htmlContent);
+
+			sendEmailThread.run();
+		} catch (Throwable exc) {
+			BiitLogger.errorMessage(SendEmail.class.getName(), exc);
+			EmailNotSentException emailNotSentException = new EmailNotSentException(exc.getMessage());
+			emailNotSentException.setStackTrace(exc.getStackTrace());
+			throw emailNotSentException;
 		}
 	}
 

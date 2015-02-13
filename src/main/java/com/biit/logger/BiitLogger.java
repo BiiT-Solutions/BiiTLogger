@@ -16,7 +16,7 @@ import com.biit.logger.mail.exceptions.InvalidEmailAddressException;
  * Defines basic log behavior. Uses log4j.properties. For change the name of the logger, create a class that extends
  * this class with this code: static { setLogger(Logger.getLogger(new Object() { }.getClass().getEnclosingClass())); }
  */
-public class BiitLogger {
+public abstract class BiitLogger {
 	private static Logger logger;
 
 	public Logger getLogger() {
@@ -32,7 +32,7 @@ public class BiitLogger {
 	 * 
 	 * @param message
 	 */
-	private static void info(String message) {
+	protected static void info(String message) {
 		logger.info(message);
 	}
 
@@ -48,7 +48,7 @@ public class BiitLogger {
 	 * 
 	 * @param message
 	 */
-	private static void warning(String message) {
+	protected static void warning(String message) {
 		logger.warn(message);
 	}
 
@@ -67,7 +67,7 @@ public class BiitLogger {
 	 * 
 	 * @param message
 	 */
-	private static void debug(String message) {
+	protected static void debug(String message) {
 		if (isDebugEnabled()) {
 			logger.debug(message);
 		}
@@ -87,7 +87,7 @@ public class BiitLogger {
 	 * 
 	 * @param message
 	 */
-	private static void severe(String message) {
+	protected static void severe(String message) {
 		logger.error(message);
 	}
 
@@ -129,11 +129,15 @@ public class BiitLogger {
 	 */
 	public static void errorMessage(String className, Throwable throwable) {
 		String error = getStackTrace(throwable);
-		severe(className, error);
-		sendByEmail(className, throwable);
+		errorMessage(className, error);
 	}
 
-	private static void sendByEmail(String className, Throwable throwable) {
+	public static void errorMessage(String className, String error) {
+		severe(className, error);
+		sendByEmail(className, error);
+	}
+
+	private static void sendByEmail(String className, String throwable) {
 		if (EmailConfigurationReader.getInstance().isEmailEnabled()) {
 			try {
 				SendEmail.sendEmail(EmailConfigurationReader.getInstance().getEmailToList(),
@@ -144,7 +148,7 @@ public class BiitLogger {
 		}
 	}
 
-	private static String getStackTrace(Throwable throwable) {
+	public static String getStackTrace(Throwable throwable) {
 		Writer writer = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(writer);
 		throwable.printStackTrace(printWriter);

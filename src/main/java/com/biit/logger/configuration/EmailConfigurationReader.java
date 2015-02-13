@@ -87,9 +87,11 @@ public class EmailConfigurationReader {
 
 		if (emailToList == null) {
 			emailToList = new ArrayList<>();
-			String[] users = emailToListCommaSeparated.split(",");
-			for (String user : users) {
-				emailToList.add(user.trim());
+			if (emailToListCommaSeparated != null && emailToListCommaSeparated.length() > 0) {
+				String[] users = emailToListCommaSeparated.split(",");
+				for (String user : users) {
+					emailToList.add(user.trim());
+				}
 			}
 		}
 	}

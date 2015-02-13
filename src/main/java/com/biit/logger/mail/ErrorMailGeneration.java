@@ -1,8 +1,5 @@
 package com.biit.logger.mail;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,10 +17,10 @@ public class ErrorMailGeneration {
 		return "Error in '" + getLocalHostName() + "'.";
 	}
 
-	public static String getHtmlMailContent(String className, Throwable error) {
+	public static String getHtmlMailContent(String className, String errorStackTrace) {
 		String htmlMailContent = new String();
 		htmlMailContent += generateHtmlMailTitle();
-		htmlMailContent += generateMailBody(className, error);
+		htmlMailContent += generateMailBody(className, errorStackTrace);
 
 		return htmlMailContent;
 	}
@@ -32,14 +29,11 @@ public class ErrorMailGeneration {
 		return "<h1>Error in '" + getLocalHostName() + "' at '" + getDate() + "'.</h1>";
 	}
 
-	private static String generateMailBody(String className, Throwable throwable) {
+	private static String generateMailBody(String className, String errorStackTrace) {
 		String body = "<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width: 100%;\"><tr><td><strong>Class: '"
 				+ className + "'</strong></td></tr>";
-		Writer writer = new StringWriter();
-		PrintWriter printWriter = new PrintWriter(writer);
-		throwable.printStackTrace(printWriter);
 		body += "<tr><td>"
-				+ writer.toString().replaceAll("(\r\n|\n)", "<br />").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
+				+ errorStackTrace.replaceAll("(\r\n|\n)", "<br />").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
 				+ "</td></tr>";
 		body += "</table>";
 		return body;
