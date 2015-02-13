@@ -19,7 +19,7 @@ import com.biit.logger.mail.exceptions.InvalidEmailAddressException;
 public abstract class BiitLogger {
 	private static Logger logger;
 
-	public Logger getLogger() {
+	public static Logger getLogger() {
 		return logger;
 	}
 
