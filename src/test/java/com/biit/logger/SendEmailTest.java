@@ -7,7 +7,7 @@ public class SendEmailTest {
 
 	@Test
 	public void checkLoggerName() {
-		BiitLogger.errorMessage(SendEmailTest.class.getName(), new Exception(
+		ChildLogger.errorMessage(SendEmailTest.class.getName(), new Exception(
 				"Catastrophic Error: Pray Anything you can before the end of the world."));
 	}
 }
