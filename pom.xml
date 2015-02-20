@@ -6,7 +6,7 @@
 	<groupId>com.biit</groupId>
 	<artifactId>biit-logger</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
 	<name>BiiT Logger</name>
 	<description>Basic Logging Methods for BiiT projects</description>
 
@@ -27,7 +27,7 @@
 		<org.testng.version>6.8.7</org.testng.version>
 		<log4j.version>1.2.17</log4j.version>
 		<javax.mail.version>1.4.7</javax.mail.version>
-		<biit-common.version>0.1.0</biit-common.version>
+		<biit-common.version>0.2.0</biit-common.version>
 	</properties>
 
 	<dependencies>
