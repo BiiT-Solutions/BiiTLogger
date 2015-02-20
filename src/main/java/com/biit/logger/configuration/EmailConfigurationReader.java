@@ -12,7 +12,7 @@ import com.biit.utils.configuration.exception.PropertyNotFoundException;
 public class EmailConfigurationReader extends ConfigurationReader {
 
 	private static final String DATABASE_CONFIG_FILE = "settings.conf";
-	private static final String BIIT_LOG_SYSTEM_VARIABLE_CONFIG = "BIIT_LOG_CONFIG";
+	private static final String BIIT_LOG_SYSTEM_VARIABLE_CONFIG = "BIIT_LOGGER_CONFIG";
 
 	private final String ID_EMAIL_ENABLED = "mail.enabled";
 	private final String ID_EMAIL_TO = "mail.to";
