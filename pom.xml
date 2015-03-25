@@ -5,7 +5,7 @@
 	<groupId>com.biit</groupId>
 	<artifactId>biit-logger</artifactId>
 	<packaging>jar</packaging>
-	<version>0.2.2</version>
+	<version>0.2.3-SNAPSHOT</version>
 	<name>BiiT Logger</name>
 	<description>Basic Logging Methods for BiiT projects</description>
 
@@ -25,7 +25,7 @@
 	<scm>
 		<connection>scm:git:dev.biit-solutions.com:BiiTLogger.git</connection>
 		<developerConnection>scm:git:dev.biit-solutions.com:BiiTLogger.git</developerConnection>
-		<tag>biit-logger-0.2.2</tag>
+		<tag>biit-logger</tag>
 	</scm>
 
 	<properties>
