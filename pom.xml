@@ -24,7 +24,7 @@
 
 	<scm>
 		<connection>scm:git:git.biit-solutions.com:BiiT/BiiTLogger.git</connection>
-		<connection>scm:git:git.biit-solutions.com:BiiT/BiiTLogger.git</developerConnection>
+		<developerConnection>scm:git:git.biit-solutions.com:BiiT/BiiTLogger.git</developerConnection>
 		<tag>biit-logger</tag>
 	</scm>
 
