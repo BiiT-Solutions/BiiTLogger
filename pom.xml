@@ -23,8 +23,8 @@
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:git.biit-solutions.com:BiiT/BiiTLogger.git</connection>
-		<developerConnection>scm:git:git.biit-solutions.com:BiiT/BiiTLogger.git</developerConnection>
+		<connection>scm:git:git.biit-solutions.com:Java/BiiTLogger.git</connection>
+		<developerConnection>scm:git:git.biit-solutions.com:Java/BiiTLogger.git</developerConnection>
 		<tag>biit-logger</tag>
 	</scm>
 
