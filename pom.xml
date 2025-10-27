@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>biit-logger</artifactId>
 	<packaging>jar</packaging>
-	<version>0.2.15</version>
+	<version>0.2.16-SNAPSHOT</version>
 	<name>BiiT Logger</name>
 	<description>Basic Logging Methods for BiiT projects</description>
 
@@ -45,7 +45,7 @@
 		<connection>scm:git:ssh://git@github.com/BiiT-Solutions/BiiTLogger.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/BiiT-Solutions/BiiTLogger.git</developerConnection>
 		<url>https://github.com/BiiT-Solutions/BiiTLogger.git</url>
-		<tag>biit-logger-0.2.15</tag>
+		<tag>biit-logger</tag>
 	</scm>
 
 	<properties>
